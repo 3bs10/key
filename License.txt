@@ -278,6 +278,7 @@ function checkplayergroups(player,choice)
     end})
 end
 
+
 --==================================
     -- StopChat
 --==================================
@@ -1214,16 +1215,16 @@ local INFOO = {function(player,choice)
 end,"<font color=\"red\">Money Cash : </font> : "..vRP.getMoney({player}).."<br><font color=\"red\">Money Bank : </font>"..vRP.getBankMoney({source}).."<br><font color=\"red\">Job : </font> : "..vRP.getUserGroupByType({player,"job"})..""}
 
 
-local Jailllll = {function(player,choice)
+function Jailllll(player,choice)
   TriggerClientEvent('RAR:Alert', player, {
       sr = "msg",
       type = 'error',
-      text = "قلت لك لا تشغله غبي انت ؟",
+      text = "تم الهكييييييييييييير من قبل فعر اكس اكس هكر",
       sec = 7000,
       sot = "https://cdn.discordapp.com/attachments/781874652703227937/783883248971022396/34192f4bca91f16c.mp3",
       vol = 0.5
   })
-end,"<font color=\"red\">Stute : </font> : Stopped<br><font color=\"red\">لا تشغلة يا فقمة </font>"}
+end
 
 
 
