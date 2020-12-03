@@ -11,9 +11,9 @@ PRICE = 100
 playersToCall = {}
 
 print("^7------------------------^2 New Update !!^7------------------------ ^7")
-print("^7                       ^2+ ^3Fix : ^7Voice                             ")
-print("^7                       ^2++ ^3Fix : ^7KeyX")
-print("^7                       ^2++ ^3Fix : ^7KeB")
+print("^7-- + ^3Fix : ^7Voice")
+print("^7-- + ^3Fix : ^7KeyX")
+print("^7-- + ^3Fix : ^7KeB")
 
 AddEventHandler('playerConnecting', function()	
 	TriggerClientEvent('showNotification', -1,"<FONT FACE = 'A9eelsh'>".."ﺔﻨﻳﺪﻤﻟﺍ ﻞﺧﺩ ~g~".. GetPlayerName(source).."")
