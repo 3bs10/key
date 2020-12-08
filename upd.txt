@@ -11,13 +11,15 @@ BMclient = Tunnel.getInterface(GetCurrentResourceName(),GetCurrentResourceName()
 PRICE = 100
 playersToCall = {}
 
-print("^7-----------------------[^4 New Update v2.4.0 !!^7 ]------------------------ ^7")
-print("^7---------------------[ + ^3Add : ^2Show Blips  ]-------------------^7")
-print("^7------------------[ + ^3Fixed : ^2Connecting + Crash  ]-------------^7")
-print("^7--------------------[ + ^3Fixed : ^2Map ESC  ]------------------^7")
-print("^7--------------------[ + ^3Add : ^2Functions Arabic  ]------------------^7")
-print("^7--------------------[ + ^3Add : ^2Game Active Discord New  ]------------------^7")
-print("^7--------------------[ + ^3Fixed : ^2Peds GTA  ]------------------^7")
+print("^7----------------------------------------------- ^7")
+print("^7---------->>^4 New Update v2.4.0 !!^7 ^7")
+print("^7----------------------------------------------- ^7")
+print("^7---------->> + ^3Add : ^2Show Blips ^7")
+print("^7---------->> + ^3Fixed : ^2Connecting + Crash  ^7")
+print("^7---------->> + ^3Fixed : ^2Map ESC  ^7")
+print("^7---------->> + ^3Add : ^2Functions Arabic ^7")
+print("^7---------->> + ^3Add : ^2Game Active Discord New  ^7")
+print("^7---------->> + ^3Fixed : ^2Peds GTA  ^7")
 
 
 RegisterServerEvent('vRP:Discord')
