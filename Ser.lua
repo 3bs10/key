@@ -2415,6 +2415,10 @@ local ch_handcuff = {function(player,choice)
   end)
 end,"تقييد اقرب شخص لك"}
 
+function vRPbm.getArmour()
+  return GetPedArmour(GetPlayerPed(-1))
+end
+
 --==================================
     -- Menu
 --==================================
