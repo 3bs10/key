@@ -11,6 +11,81 @@ BMclient = Tunnel.getInterface(GetCurrentResourceName(),GetCurrentResourceName()
 PRICE = 100
 playersToCall = {}
 
+----
+if xRAR.AllCommaneds.Sms.Stute then
+RegisterCommand(''..xRAR.AllCommaneds.Sms.Command..'', function(player, args, rawCommand)
+  users = vRP.getUsers({})
+  vRP.buildMenu({"Agenda1", {player = player}, function(menu)
+    menu.name = "message a player"
+    menu.css={top="75px",header_color="rgba(200,0,0,0.75)"}
+    menu.onclose = function(player) vRP.closeMenu({player}) end
+    myName = tostring(GetPlayerName(player))
+    for k, v in pairs(users) do
+      playerName = tostring(GetPlayerName(v))
+      if(playerName ~= myName)then
+        playersToCall[playerName] = v
+        menu[playerName] = {smsPlayer, "ارسالة رسالة نصية لهذا الشخص"}
+      end
+    end
+    vRP.openMenu({player,menu})
+  end})
+end)
+end
+--==================================
+    -- SEND SMS
+--==================================
+local function smsPlayer(player,choice)
+	local user_id = vRP.getUserId({player})
+	local money = vRP.getMoney({user_id})
+	local toSMS = playersToCall[choice]
+	local callingID = vRP.getUserId({toSMS})
+	player = player
+	toSMS = toSMS
+	if(money >= smsFee)then
+		if(user_id == callingID)then
+			TriggerClientEvent("RAR:Aler",toSMS, "error",
+			"فشل الارسال",
+			"لا يمكنك ارسال رسالة لنفسك",
+			3000)
+		else
+			vRP.prompt({player, "الرسالة", "", function(player,text)
+				text = text
+				if(text ~= "" and text ~= nil)then
+					if vRP.tryPayment({user_id, smsFee}) then
+						TriggerClientEvent("RAR:Aler",toSMS, "done",
+						""..GetPlayerName(player).." : رسالة من",
+						"( "..text.." )",
+						15000)
+				TriggerClientEvent("RAR:Aler",player, "done",
+				"نجح الارسال",
+				"تم ارسال الرسالة بنجاح للشخص الذي حددته",
+				3000)
+					end
+				else
+					TriggerClientEvent('RAR:Alert', player, {
+						sr = "msg",
+						type = 'error',
+						text = '   لا يمكنك ارسال رسالة فارغه  ',
+						sec = 5000,
+						sot = "https://cdn.discordapp.com/attachments/694414844925051000/780349942098296852/258193__kodack__beep-beep.wav",
+						vol = 0.3
+					  })
+				end
+			end})
+			vRP.closeMenu({player})
+		end
+	else
+		TriggerClientEvent('RAR:Alert', player, {
+			sr = "msg",
+			type = 'error',
+			text = '   ليس لديك رصيد كافي بالمحفظة للارسال  ',
+			sec = 5000,
+			sot = "https://cdn.discordapp.com/attachments/694414844925051000/780349942098296852/258193__kodack__beep-beep.wav",
+			vol = 0.3
+		  })
+	end
+end
+
 --==================================
     -- KEY CANCEL EMOTES
 --==================================
@@ -2502,7 +2577,25 @@ vRP.registerMenuBuilder({"main", function(add, data)
       choices["عرض هويتي الوطنية"] = {showMyID,"لعرض الهوية الخاصة بك"}
 
       choices["ارسال الموقع"] = {showPlayers,"لارسال الموقع للاعبين"}
---
+
+      choices["SMS"] = {function(player,choice)
+        users = vRP.getUsers({})
+        vRP.buildMenu({"Agenda1", {player = player}, function(menu)
+          menu.name = "Agenda1"
+          menu.css={top="75px",header_color="rgba(200,0,0,0.75)"}
+          menu.onclose = function(player) vRP.closeMenu({player}) end
+          myName = tostring(GetPlayerName(player))
+          for k, v in pairs(users) do
+            playerName = tostring(GetPlayerName(v))
+            if(playerName ~= myName)then
+              playersToCall[playerName] = v
+              menu[playerName] = {smsPlayer, "ارسالة رسالة نصية لهذا الشخص !"}
+            end
+          end
+          vRP.openMenu({player,menu})
+        end})
+      end}
+
       if(vRP.hasPermission({user_id, "123"}))then
         choices["تعقب شخص"] = {function(player,choice)
           users = vRP.getUsers({})
