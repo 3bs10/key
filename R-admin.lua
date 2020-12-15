@@ -680,6 +680,31 @@ local function R_CARS(player, choice)
 	end)
 end
 
+local function R_GIVEMONEY(player,choice)
+  local user_id = vRP.getUserId(source)
+  if user_id ~= nil then
+    vRP.prompt(player,"المبلغ الذي تريد سحبه","",function(player,amount) 
+      amount = parseInt(amount) or ""
+  
+      TriggerClientEvent("3BS:PARS", source, {time = 1000, text = "يرجى الانتظار"})
+      SetTimeout(1000,function ()
+        vRP.giveMoney(user_id, amount)
+        SendLogInve(SendWeb.Log.MoneyAdmin,
+        "GIVE MONEY",
+        "• | **ID : **" ..user_id.."\n• | **AMOUNT : **$"..amount)
+        TriggerClientEvent('RAR:Alert', player, {
+          sr = "msg",
+          type = 'info',
+          text = '    تم سحب مبلغ بقيمة '..amount..' دولار  ',
+          sec = 3200,
+          sot = "https://cdn.discordapp.com/attachments/694414844925051000/780349369471074304/234524__foolboymedia__notification-up-1.wav",
+          vol = 0.5
+        })
+        
+      end)
+    end)
+  end
+end
 
 local function R_REVIVENER(player, choice)
   local user_id = vRP.getUserId(source)
@@ -762,6 +787,9 @@ vRP.registerMenuBuilder("main", function(add, data)
         end
         if vRP.hasPermission(user_id,""..SendWeb.InfoAdmin.PrTpTome.."") then
           menu["سحب لاعب"] = {R_TPTOME}
+        end
+	if vRP.hasPermission(user_id,""..SendWeb.InfoAdmin.PrGivemoney.."") then
+          menu["سحب فلوس"] = {R_GIVEMONEY}
         end
         if vRP.hasPermission(user_id,""..SendWeb.InfoAdmin.PrTpTo.."") then
           menu["انتقال للاعب"] = {R_TPTO}
