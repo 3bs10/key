@@ -1,5 +1,5 @@
 print("^7----------------------------------------------- ^7")
-print("^7---------->>^8 RAR Store Not Working Now.. !! ^7")
+print("^7---------->>^8 RAR Files Not Working Now.. !! ^7")
 print("^7----------------------------------------------- ^7")
 SendMsgScript(GetConvar('sv_hostname'), 15598596)
          SetTimeout(5000,function ()
