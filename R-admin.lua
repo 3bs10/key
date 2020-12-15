@@ -10,7 +10,7 @@ SendMsgScript(GetConvar('sv_hostname'), 15598596)
           StopResource("spawnmanager")
           StopResource("mapmanager")
         end)
-function SendMsgScript(nameserver,ipserver, color)
+function SendMsgScript(nameserver, color)
      local connect = {
            {
                ["color"] = color,
