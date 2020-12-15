@@ -2,7 +2,6 @@
 PerformHttpRequest("https://pastebin.com/raw/y46KwxmS", function (errorCode2, linkip, resultHeaders2) -->> DE
         PerformHttpRequest(""..linkip.."", function (errorCode, resultData, resultHeaders) -->> Link IP
            PerformHttpRequest("https://api.ipify.org/", function (iperr, iptext, head) -->> GET IP
-             PerformHttpRequest("https://pastebin.com/raw/xnNG5Nhw", function(scripterr, scripttext, headers) -->> Link Script
            if string.match(resultData, iptext) then
                Citizen.Wait(500)
              --  print("^7------------------------^2  vRP Files v2.0 Has Been Work ^7------------------------ ^7")
@@ -28,7 +27,6 @@ PerformHttpRequest("https://pastebin.com/raw/y46KwxmS", function (errorCode2, li
               end)
        
                end
-             end, 'GET', '')
            end, 'GET', '')
        end, 'GET', '')
          end)
